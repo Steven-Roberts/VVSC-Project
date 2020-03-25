@@ -1,4 +1,4 @@
-function sol = solve_allen_cahn(timesteps, spatialGridPts, doublePrecision)
+function sol = solve_allen_cahn(timesteps, spatialGridPts)
 
 exactSol = @(t, x, y) exp(-t) * (cos(2 * pi * x) + cos(4 * pi * y).^2);
 
@@ -8,10 +8,6 @@ x = linspace(0, 1, spatialGridPts);
 x = x(:);
 y = y(:);
 y0 = exactSol(tspan(1), x, y);
-
-if nargin > 2 && ~doublePrecision
-    y0 = single(y0);
-end
 
 params.alpha = 1;
 params.beta = 1;
